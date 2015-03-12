@@ -20,6 +20,8 @@ type MultiTreeHash struct {
 }
 ```
 
+MultiTreeHash allows the cumulative sum of multiple TreeHashes to one master
+hash, for multipart uploads with Amazon Glacier
 
 #### func (*MultiTreeHash) Add
 

@@ -5,6 +5,8 @@ import (
 	"encoding/hex"
 )
 
+// MultiTreeHash allows the cumulative sum of multiple TreeHashes to one
+// master hash, for multipart uploads with Amazon Glacier
 type MultiTreeHash struct {
 	nodes [][sha256.Size]byte
 }
