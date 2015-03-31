@@ -55,7 +55,7 @@ func (t *TreeHash) Write(p []byte) (n int, err error) {
 	return n, nil
 }
 
-// Close closes the writer and computes the final tree hash
+// Close closes the writer and computes the final tree hash.
 // After the first call, any writes will create an invalid hash tree
 func (t *TreeHash) Close() error {
 	// The last piece of data
@@ -75,7 +75,7 @@ func (t *TreeHash) TreeHash() string {
 	return hex.EncodeToString(t.hash)
 }
 
-// Hash returns the sha256 sum of all of the data written to the reader
+// Hash returns the sha256 sum of all of the data written to the reader.
 // This will only be valid after Close has been called
 func (t *TreeHash) Hash() string {
 	hsh := t.sha.Sum(nil)
@@ -89,13 +89,9 @@ func compute(d [][sha256.Size]byte) []byte {
 
 	// while we still have multiple hashes present in the "tree"
 	for len(prev) > 1 {
-		pLen := len(prev) / 2
-		if len(prev)%2 == 1 {
-			pLen++
-		}
 		// create the next level up in the "tree"
 		next := make([][sha256.Size]byte, 0)
-		for i, j := 0, 0; i < len(prev); i, j = i+2, j+1 {
+		for i := 0; i < len(prev); i = i + 2 {
 			// if there are at least two remaining
 			if len(prev)-i > 1 {
 				sum := sha256.Sum256(append(prev[i][:], prev[i+1][:]...))
